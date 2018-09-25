@@ -7,7 +7,7 @@
 Install via [vim-plug](https://hiberabyss.github.io/2018/03/21/vim-plug-introduction/):
 
 ```vim
-Plug 'git@git.code.oa.com:hongboliu/spa-lint.git'
+Plug 'https://github.com/hiberabyss/spa-lint'
 ```
 
 

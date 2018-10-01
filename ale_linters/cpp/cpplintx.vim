@@ -1,7 +1,5 @@
 " Author            : Hongbo Liu <hongboliu@tencent.com>
 " Date              : 2018-09-06
-" Last Modified Date: 2018-09-06
-" Last Modified By  : Hongbo Liu <hongboliu@tencent.com>
 
 call ale#Set('cpp_cpplintx_executable', 'cpplintx.py')
 call ale#Set('cpp_cpplintx_options', '')

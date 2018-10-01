@@ -20,9 +20,9 @@ Add following lines into your `.vimrc`
 let g:spa_code_dir = expand('path/to/your/code/trunk')
 
 let g:ale_linters = {
-			\ 'cpp': ['cpplint', 'cpplintx', 'ccnlint', 'simian'],
-      \ 'java' : ['checkstyle'],
+      \ 'cpp': ['cpplint', 'cpplintx', 'ccnlint', 'simian'],
+      \ 'java' : ['checkstyle', 'ccnlint'],
       \ 'sh' : ['shlint'],
       \ 'python' : ['pylintx'],
-			\ }
+      \ }
 ```

@@ -1,12 +1,11 @@
-" Author            : Hongbo Liu <hongboliu@tencent.com>
-" Date              : 2018-09-06
-" Last Modified Date: 2018-09-06
-" Last Modified By  : Hongbo Liu <hongboliu@tencent.com>
+" Copyright (c) 2018, Tencent Inc
+" Author: Hongbo Liu <hongboliu@tencent.com>
+" Date  : 2018-10-01 20:44:42
 
 call ale#Set('ccnlint_executable', 'ccnlint_diff.py')
 call ale#Set('ccnlint_options', '')
 
-function! ale_linters#cpp#ccnlint#GetCommand(buffer)
+function! handlers#ccnlinter#GetCommand(buffer)
     let l:options = ale#Var(a:buffer, 'ccnlint_options')
 
     return ale#path#BufferCdString(a:buffer) 
@@ -14,7 +13,7 @@ function! ale_linters#cpp#ccnlint#GetCommand(buffer)
                 \ . fnamemodify(bufname(a:buffer), ':p:t')
 endfunction
 
-function! ale_linters#cpp#ccnlint#HandleccnlintFormat(buffer, lines)
+function! handlers#ccnlinter#HandleFormat(buffer, lines)
     " Look for lines like the following.
     " parse_recordio.cc:17: pointer: Suggest keeping same style in one file, using
     let l:pattern = '^.\+;\(\d\+\).\{-}: \(.\+(line \(\d\+\)).\{-}\d\+\)'
@@ -39,11 +38,13 @@ function! ale_linters#cpp#ccnlint#HandleccnlintFormat(buffer, lines)
     return l:output
 endfunction
 
-call ale#linter#Define('cpp', {
-\   'name': 'ccnlint',
-\   'output_stream': 'both',
-\   'executable_callback': ale#VarFunc('ccnlint_executable'),
-\   'command_callback': 'ale_linters#cpp#ccnlint#GetCommand',
-\   'callback': 'ale_linters#cpp#ccnlint#HandleccnlintFormat',
-\   'lint_file': 1,
-\})
+function! handlers#ccnlinter#AddLinter(filetype)
+  call ale#linter#Define(a:filetype, {
+        \   'name': 'ccnlint',
+        \   'output_stream': 'both',
+        \   'executable_callback': ale#VarFunc('ccnlint_executable'),
+        \   'command_callback': 'handlers#ccnlinter#GetCommand',
+        \   'callback': 'handlers#ccnlinter#HandleFormat',
+        \   'lint_file': 1,
+        \})
+endfunction

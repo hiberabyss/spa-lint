@@ -1,6 +1,7 @@
 # Requirements
 
 - Install [ale](https://github.com/w0rp/ale)
+- Install checkstyle for java: `brew install checkstyle`
 
 # Install
 
@@ -16,10 +17,12 @@ Plug 'https://github.com/hiberabyss/spa-lint'
 Add following lines into your `.vimrc`
 
 ```vim
-let g:tencent_linters_dir = expand('path/to/your/code/trunk/app/qzap/common/tool')
+let g:spa_code_dir = expand('path/to/your/code/trunk')
 
-let g:ale_linters.cpp = ['cpplintx']
-let g:ale_linters.sh = ['shlint']
-let g:ale_linters.python = ['pylintx']
+let g:ale_linters = {
+			\ 'cpp': ['cpplint', 'cpplintx', 'ccnlint', 'simian'],
+      \ 'java' : ['checkstyle'],
+      \ 'sh' : ['shlint'],
+      \ 'python' : ['pylintx'],
+			\ }
 ```
-

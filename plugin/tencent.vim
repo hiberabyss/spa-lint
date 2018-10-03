@@ -7,6 +7,7 @@ if !exists('g:spa_simian_path')
 endif
 
 let g:ale_cpp_cpplint_options = '--linelength=100'
+let g:ale_java_checkstyle_options = printf('-c %s/thirdparty/java/checkstyle/google_checks.xml', g:spa_code_dir)
 
 let s:lint_dir = g:spa_code_dir . '/app/qzap/common/tool'
 if $PATH !~ s:lint_dir

@@ -33,8 +33,8 @@ endfunction
 call ale#linter#Define('python', {
 \   'name': 'pylintx',
 \   'output_stream': 'both',
-\   'executable_callback': ale#VarFunc('py_pylintx_executable'),
-\   'command_callback': 'ale_linters#python#pylintx#GetCommand',
+\   'executable': {b -> ale#Var(b, 'py_pylintx_executable')},
+\   'command': function('ale_linters#python#pylintx#GetCommand'),
 \   'callback': 'ale_linters#python#pylintx#HandlepyLintxFormat',
 \   'lint_file': 1,
 \})

@@ -3,7 +3,6 @@
 " Last Modified Date: 2018-09-07
 " Last Modified By  : Hongbo Liu <hongboliu@tencent.com>
 
-call ale#Set('shlint_executable', 'shlint.py')
 call ale#Set('shlint_options', '')
 
 function! ale_linters#sh#shlint#GetCommand(buffer) abort
@@ -35,7 +34,7 @@ endfunction
 call ale#linter#Define('sh', {
 \   'name': 'shlint',
 \   'output_stream': 'both',
-\   'executable_callback': ale#VarFunc('shlint_executable'),
-\   'command_callback': 'ale_linters#sh#shlint#GetCommand',
+\   'executable': 'shlint.py',
+\   'command': function('ale_linters#sh#shlint#GetCommand'),
 \   'callback': 'ale_linters#sh#shlint#HandleCppLintxFormat',
 \})

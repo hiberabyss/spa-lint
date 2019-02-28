@@ -2,7 +2,6 @@
 " Author: Hongbo Liu <hongboliu@tencent.com>
 " Date  : 2018-10-01 20:44:42
 
-call ale#Set('ccnlint_executable', 'ccnlint_diff.py')
 call ale#Set('ccnlint_options', '')
 
 function! handlers#ccnlinter#GetCommand(buffer)
@@ -42,8 +41,8 @@ function! handlers#ccnlinter#AddLinter(filetype)
   call ale#linter#Define(a:filetype, {
         \   'name': 'ccnlint',
         \   'output_stream': 'both',
-        \   'executable_callback': ale#VarFunc('ccnlint_executable'),
-        \   'command_callback': 'handlers#ccnlinter#GetCommand',
+        \   'executable': 'ccnlint_diff.py',
+        \   'command': function('handlers#ccnlinter#GetCommand'),
         \   'callback': 'handlers#ccnlinter#HandleFormat',
         \   'lint_file': 1,
         \})

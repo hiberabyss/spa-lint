@@ -32,8 +32,8 @@ function! handlers#simian#AddLinter(filetype)
   call ale#linter#Define(a:filetype, {
         \   'name': 'simian',
         \   'output_stream': 'both',
-        \   'executable_callback': ale#VarFunc('simian_executable'),
-        \   'command_callback': 'handlers#simian#GetCommand',
+        \   'executable': 'java',
+        \   'command': function('handlers#simian#GetCommand'),
         \   'callback': 'handlers#simian#HandleFormat',
         \   'lint_file': 1,
         \})

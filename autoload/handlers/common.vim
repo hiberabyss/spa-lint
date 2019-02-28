@@ -27,14 +27,13 @@ function! handlers#common#HandleFormat(buffer, lines)
 endfunction
 
 function! handlers#common#AddLinter(filetype, command, name)
-  call ale#Set('common_executable', a:command)
   call ale#Set('common_options', '')
 
   call ale#linter#Define(a:filetype, {
         \   'name': a:name,
         \   'output_stream': 'both',
-        \   'executable_callback': ale#VarFunc('common_executable'),
-        \   'command_callback': 'handlers#common#GetCommand',
+        \   'executable': a:command,
+        \   'command': function('handlers#common#GetCommand'),
         \   'callback': 'handlers#common#HandleFormat',
         \   'lint_file': 1,
         \})
